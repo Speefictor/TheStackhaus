@@ -7,16 +7,16 @@ import Image from 'next/image';
 
 export function Header() {
   const navLinks = [
-    { href: '#services', label: 'Services' },
-    { href: '#portfolio', label: 'Portfolio' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#order', label: 'Order Online' },
+    { href: '#gallery', label: 'Gallery' },
+    { href: '#about', label: 'About' },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="https://placehold.co/40x40.png" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
+          <Image src="/logo-placeholder.svg" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
           <span className="text-xl font-bold font-headline text-primary">
             The Stackhaus
           </span>
@@ -34,7 +34,9 @@ export function Header() {
         </nav>
         <div className="flex items-center space-x-2 md:space-x-4">
           <div className="hidden sm:block">
-            <Button>Order Now</Button>
+            <Button asChild>
+                <a href="#order">Order Now</a>
+            </Button>
           </div>
           <ThemeToggle />
           <div className="md:hidden">
@@ -48,7 +50,7 @@ export function Header() {
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="flex items-center gap-2 mb-4">
-                     <Image src="https://placehold.co/40x40.png" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
+                     <Image src="/logo-placeholder.svg" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
                      <span className="text-xl font-bold font-headline text-primary">The Stackhaus</span>
                   </Link>
                   {navLinks.map((link) => (
@@ -60,7 +62,9 @@ export function Header() {
                       {link.label}
                     </Link>
                   ))}
-                  <Button className="w-full mt-4">Order Now</Button>
+                  <Button className="w-full mt-4" asChild>
+                    <a href="#order">Order Now</a>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>

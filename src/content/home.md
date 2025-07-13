@@ -4,24 +4,24 @@ hero:
   subtitle: "We blend culinary artistry with impeccable service to create extraordinary sandwiches."
   image: "https://gourmondoco.com/cdn/shop/files/54357260065_6e4cda80ab_o.jpg?v=1742922731&width=2000"
   imageHint: "gourmet sandwich"
-  cta: "Explore Our Menu"
-services:
-  title: "Our Services"
-  subtitle: "Whatever the occasion, we deliver exceptional food and service tailored to your needs."
+  cta: "Order Online"
+order:
+  title: "Order Online"
+  subtitle: "Hungry? Get our artisanal sandwiches delivered right to your door."
   items:
-    - title: "Corporate Catering"
-      description: "Elevate your meetings and events with our fresh, delicious, and reliable corporate catering services."
+    - title: "Daily Specials"
+      description: "Check out today's featured sandwich. A new creation every day to keep things fresh and exciting."
       imageUrl: "https://placehold.co/600x400.png"
-      hint: "corporate catering"
-    - title: "Private Events"
-      description: "From intimate gatherings to grand celebrations, we provide bespoke menus to make your event unforgettable."
-      imageUrl: "https://placehold.co/600x400.png"
-      hint: "wedding party"
+      hint: "daily special sandwich"
     - title: "Boxed Lunches"
-      description: "Convenient, gourmet boxed lunches perfect for any occasion, delivered right to your office or event."
+      description: "Convenient, gourmet boxed lunches perfect for one or for a group. Custom-built to your taste."
       imageUrl: "https://placehold.co/600x400.png"
       hint: "lunch box"
-portfolio:
+    - title: "Catering Trays"
+      description: "Our signature sandwiches, cut and arranged on platters. Perfect for meetings and parties."
+      imageUrl: "https://placehold.co/600x400.png"
+      hint: "sandwich platter"
+gallery:
   title: "Our Creations"
   subtitle: "A glimpse into some of the delicious sandwiches we've had the pleasure of creating."
   items:
@@ -41,10 +41,12 @@ portfolio:
       description: "Sausage, egg, cheese, and a hash brown on a brioche bun."
       imageUrl: "https://placehold.co/600x400.png"
       hint: "breakfast sandwich"
-contact:
-  title: "Get in Touch"
+about:
+  title: "About The Stackhaus"
   body: |
-    Have an event in mind? We'd love to hear from you. Fill out the form, and we'll get back to you shortly to discuss how we can make your event a delicious success.
+    Founded in 2023, The Stackhaus was born from a simple idea: a sandwich can be more than just a meal, it can be an experience. We are passionate about quality ingredients, creative combinations, and building the perfect stack, every time.
+
+    Have an event in mind or a question for us? We'd love to hear from you.
   email: "contact@thestackhaus.com"
   phone: "(123) 456-7890"
   address: "123 Foodie Lane, Flavor Town, FT 54321"
