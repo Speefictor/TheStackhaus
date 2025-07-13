@@ -22,7 +22,7 @@ order:
       imageUrl: "https://placehold.co/600x400.png"
       hint: "catering platter"
 gallery:
-  title: "Our Creations"
+  title: "Gallery"
   subtitle: "A glimpse into some of the delicious sandwiches we've had the pleasure of creating."
   items:
     - title: "The Italian Stack"
