@@ -1,11 +1,39 @@
+'use client';
+
 import Image from 'next/image';
-import { getPageContent } from '@/lib/content';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/hooks/use-cart';
+import { useToast } from '@/hooks/use-toast';
+import { getPageContent } from '@/lib/content';
 
-export default async function OrderPage() {
-  const { title, subtitle, categories } = getPageContent('order.md') as any;
+type MenuItem = {
+  name: string;
+  price: number;
+  imageUrl: string;
+  hint: string;
+  description?: string;
+};
+
+type OrderPageContent = {
+  title: string;
+  subtitle: string;
+  categories: any[];
+};
+
+function OrderPageClient({ content }: { content: OrderPageContent }) {
+  const { title, subtitle, categories } = content;
+  const { addItem } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = (item: MenuItem) => {
+    addItem(item);
+    toast({
+      title: 'Added to cart',
+      description: `${item.name} has been added to your cart.`,
+    });
+  };
 
   return (
     <div className="container mx-auto">
@@ -21,7 +49,7 @@ export default async function OrderPage() {
               <section key={subcategory.id} id={subcategory.id} className="scroll-mt-20">
                 <h2 className="text-3xl font-bold font-headline mb-8 border-b pb-4">{subcategory.title}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                  {subcategory.items.map((item: any) => (
+                  {subcategory.items.map((item: MenuItem) => (
                     <Card key={item.name} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <CardHeader className="p-0">
                         <Image
@@ -41,8 +69,8 @@ export default async function OrderPage() {
                           </CardDescription>
                         )}
                         <div className="flex justify-between items-center mt-auto">
-                           <Badge variant="secondary" className="text-base font-bold">{item.price}</Badge>
-                           <Button size="sm">Add to Cart</Button>
+                           <Badge variant="secondary" className="text-base font-bold">${item.price.toFixed(2)}</Badge>
+                           <Button size="sm" onClick={() => handleAddToCart(item)}>Add to Cart</Button>
                         </div>
                       </CardContent>
                     </Card>
@@ -55,4 +83,10 @@ export default async function OrderPage() {
       </div>
     </div>
   );
+}
+
+
+export default function OrderPage() {
+  const content = getPageContent('order.md') as OrderPageContent;
+  return <OrderPageClient content={content} />;
 }

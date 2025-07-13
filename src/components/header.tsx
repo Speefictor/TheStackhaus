@@ -1,11 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
+import { Menu, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
+import { useCart } from '@/hooks/use-cart';
 
 export function Header() {
+  const { totalItems, setCartOpen } = useCart();
   const navLinks = [
     { href: '/order', label: 'Order Online' },
     { href: '/#gallery', label: 'Gallery' },
@@ -33,11 +37,15 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center space-x-2 md:space-x-4">
-          <div className="hidden sm:block">
-            <Button asChild>
-                <Link href="/order">Order Now</Link>
-            </Button>
-          </div>
+          <Button variant="ghost" size="icon" onClick={() => setCartOpen(true)} className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            {totalItems > 0 && (
+              <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                {totalItems}
+              </span>
+            )}
+            <span className="sr-only">Open Cart</span>
+          </Button>
           <ThemeToggle />
           <div className="md:hidden">
             <Sheet>

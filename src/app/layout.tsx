@@ -4,6 +4,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { CartProvider } from '@/hooks/use-cart';
+import { Cart } from '@/components/cart';
 
 export const metadata: Metadata = {
   title: 'The Stackhaus',
@@ -36,12 +38,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
+          <CartProvider>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <Cart />
+            <Toaster />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>
