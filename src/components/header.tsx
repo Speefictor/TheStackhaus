@@ -15,7 +15,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="text-2xl font-bold font-headline text-primary">
-          Gourmondo
+          The Stackhaus
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
@@ -44,7 +44,7 @@ export function Header() {
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="text-2xl font-bold font-headline text-primary mb-4">
-                    Gourmondo
+                    The Stackhaus
                   </Link>
                   {navLinks.map((link) => (
                     <Link

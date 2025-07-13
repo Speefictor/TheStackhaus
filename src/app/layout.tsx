@@ -6,8 +6,8 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'GourmondoClone',
-  description: 'Artisanal catering for unforgettable moments.',
+  title: 'The Stackhaus',
+  description: 'Artisanal sandwiches for unforgettable moments.',
 };
 
 export default function RootLayout({
