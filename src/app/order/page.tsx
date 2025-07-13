@@ -1,13 +1,8 @@
-'use client';
-
-import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/hooks/use-cart';
-import { useToast } from '@/hooks/use-toast';
 import { getPageContent } from '@/lib/content';
+import { OrderLayoutClient } from './order-layout-client';
+import { OrderPageComponent } from './order-page-client';
 
+// Define the types for the page content
 type MenuItem = {
   name: string;
   price: number;
@@ -16,79 +11,35 @@ type MenuItem = {
   description?: string;
 };
 
+type Subcategory = {
+  id: string;
+  title: string;
+  items: MenuItem[];
+};
+
+type Category = {
+  title: string;
+  subcategories: Subcategory[];
+};
+
 type OrderPageContent = {
   title: string;
   subtitle: string;
-  categories: any[];
+  categories: Category[];
 };
 
-function OrderPageComponent() {
+// This is the main Server Component for the /order route.
+// It is responsible for fetching all data from the CMS.
+export default function OrderPage() {
+  // Fetch the page content once.
   const content = getPageContent('order.md') as OrderPageContent;
-  const { title, subtitle, categories } = content;
-  const { addItem } = useCart();
-  const { toast } = useToast();
-
-  const handleAddToCart = (item: MenuItem) => {
-    addItem(item);
-    toast({
-      title: 'Added to cart',
-      description: `${item.name} has been added to your cart.`,
-    });
-  };
 
   return (
-    <div className="container mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">{title}</h1>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{subtitle}</p>
-      </div>
-
-      <div className="space-y-16">
-        {categories.map((category: any) => (
-          <div key={category.title}>
-            {category.subcategories.map((subcategory: any) => (
-              <section key={subcategory.id} id={subcategory.id} className="scroll-mt-20">
-                <h2 className="text-3xl font-bold font-headline mb-8 border-b pb-4">{subcategory.title}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                  {subcategory.items.map((item: MenuItem) => (
-                    <Card key={item.name} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      <CardHeader className="p-0">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.name}
-                          data-ai-hint={item.hint}
-                          width={400}
-                          height={300}
-                          className="w-full h-48 object-cover"
-                        />
-                      </CardHeader>
-                      <CardContent className="p-4 flex flex-col flex-grow">
-                        <CardTitle className="text-lg font-headline mb-2">{item.name}</CardTitle>
-                        {item.description && (
-                          <CardDescription className="text-sm text-muted-foreground mb-4 flex-grow">
-                            {item.description}
-                          </CardDescription>
-                        )}
-                        <div className="flex justify-between items-center mt-auto">
-                            <Badge variant="secondary" className="text-base font-bold">${item.price.toFixed(2)}</Badge>
-                            <Button size="sm" onClick={() => handleAddToCart(item)}>Add to Cart</Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+    // The server component passes the fetched content down to two separate
+    // client components: one for the layout (sidebar) and one for the main page content.
+    // This ensures that the data-fetching logic remains strictly on the server.
+    <OrderLayoutClient categories={content.categories}>
+      <OrderPageComponent content={content} />
+    </OrderLayoutClient>
   );
-}
-
-
-// This page is now a Server Component by default.
-// It fetches server-side content and passes it to a Client Component.
-export default function OrderPage() {
-  return <OrderPageComponent />;
 }
