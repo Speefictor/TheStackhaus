@@ -20,7 +20,6 @@ export function OrderLayoutClient({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex flex-1 overflow-hidden">
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center justify-between">
@@ -54,7 +53,6 @@ export function OrderLayoutClient({
                 </div>
             </ScrollArea>
         </SidebarInset>
-      </div>
     </SidebarProvider>
   )
 }

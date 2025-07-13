@@ -141,7 +141,7 @@ const SidebarProvider = React.forwardRef<
               } as React.CSSProperties
             }
             className={cn(
-              "group/sidebar-wrapper flex w-full has-[[data-variant=inset]]:bg-sidebar",
+              "group/sidebar-wrapper flex w-full",
               className
             )}
             ref={ref}
@@ -215,7 +215,7 @@ const Sidebar = React.forwardRef<
     return (
       <div
         ref={ref}
-        className={cn("group hidden md:flex flex-col text-sidebar-foreground border-r", 
+        className={cn("group hidden md:fixed md:top-16 md:flex flex-col text-sidebar-foreground border-r h-[calc(100vh-4rem)]", 
         "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
         "w-[--sidebar-width] transition-[width] ease-in-out duration-300",
         state === 'collapsed' ? 'w-[--sidebar-width-icon]' : 'w-[--sidebar-width]'
@@ -227,7 +227,7 @@ const Sidebar = React.forwardRef<
       >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar"
+            className="flex h-full w-full flex-col bg-background"
           >
             {children}
           </div>
@@ -296,11 +296,13 @@ const SidebarInset = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"main">
 >(({ className, ...props }, ref) => {
+    const { state } = useSidebar();
   return (
     <main
       ref={ref}
       className={cn(
-        "flex-1 overflow-auto",
+        "flex-1 overflow-auto transition-[margin-left] duration-300 ease-in-out",
+        state === 'collapsed' ? 'md:ml-[--sidebar-width-icon]' : 'md:ml-[--sidebar-width]',
         className
       )}
       {...props}
