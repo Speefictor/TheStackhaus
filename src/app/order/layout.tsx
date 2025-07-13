@@ -1,12 +1,16 @@
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarInset } from '@/components/ui/sidebar'
+import { getPageContent } from '@/lib/content';
+
+type OrderPageContent = {
+  categories: any[];
+};
 
 export default function OrderLayout({
   children,
-  categories,
 }: {
   children: React.ReactNode
-  categories: any[]
 }) {
+  const { categories } = getPageContent('order.md') as OrderPageContent;
 
   return (
     <SidebarProvider>
