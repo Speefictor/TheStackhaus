@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 import { CartProvider } from '@/hooks/use-cart';
 import { Cart } from '@/components/cart';
 
@@ -39,11 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CartProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <Footer />
-            </div>
+            {children}
             <Cart />
             <Toaster />
           </CartProvider>
