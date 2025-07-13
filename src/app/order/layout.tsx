@@ -23,9 +23,9 @@ export default function OrderLayout({
   const content = getPageContent('order.md') as OrderPageContent;
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow flex overflow-hidden">
         <OrderLayoutClient categories={content.categories}>
           {children}
         </OrderLayoutClient>
