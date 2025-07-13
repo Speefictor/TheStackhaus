@@ -12,6 +12,7 @@ import { ContactForm } from '@/components/contact-form';
 import { ArrowRight } from 'lucide-react';
 import { getPageContent } from '@/lib/content';
 import { marked } from 'marked';
+import Link from 'next/link';
 
 export default async function Home() {
   const { hero, order, gallery, about } = getPageContent('home.md') as any;
@@ -34,10 +35,10 @@ export default async function Home() {
             {hero.subtitle}
           </p>
           <Button size="lg" asChild>
-            <a href="#order">
+            <Link href="/order">
               {hero.cta}
               <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+            </Link>
           </Button>
         </div>
       </section>
@@ -76,9 +77,9 @@ export default async function Home() {
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
                   <Button asChild>
-                    <a href="#">
+                    <Link href="/order">
                       Order Now
-                    </a>
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>

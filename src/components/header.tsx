@@ -7,9 +7,9 @@ import Image from 'next/image';
 
 export function Header() {
   const navLinks = [
-    { href: '#order', label: 'Order Online' },
-    { href: '#gallery', label: 'Gallery' },
-    { href: '#about', label: 'About' },
+    { href: '/order', label: 'Order Online' },
+    { href: '/#gallery', label: 'Gallery' },
+    { href: '/#about', label: 'About' },
   ];
 
   return (
@@ -35,7 +35,7 @@ export function Header() {
         <div className="flex items-center space-x-2 md:space-x-4">
           <div className="hidden sm:block">
             <Button asChild>
-                <a href="#order">Order Now</a>
+                <Link href="/order">Order Now</Link>
             </Button>
           </div>
           <ThemeToggle />
@@ -63,7 +63,7 @@ export function Header() {
                     </Link>
                   ))}
                   <Button className="w-full mt-4" asChild>
-                    <a href="#order">Order Now</a>
+                    <Link href="/order">Order Now</Link>
                   </Button>
                 </div>
               </SheetContent>
