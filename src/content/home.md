@@ -1,8 +1,8 @@
 ---
 hero:
-  title: "Artisanal Catering for Unforgettable Moments"
+  title: "AArtisanal Catering for Unforgettable Moments"
   subtitle: "We blend culinary artistry with impeccable service to create extraordinary experiences."
-  image: "https://placehold.co/1920x1080.png"
+  image: "https://gourmondoco.com/cdn/shop/files/54357260065_6e4cda80ab_o.jpg?v=1742922731&width=2000"
   imageHint: "catering event"
   cta: "Explore Our Services"
 services:
