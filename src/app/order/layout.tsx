@@ -1,5 +1,4 @@
 import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
 
 export default function OrderLayout({
   children,
@@ -12,7 +11,6 @@ export default function OrderLayout({
       <main className="flex-grow">
         {children}
       </main>
-      <Footer />
     </div>
   );
 }

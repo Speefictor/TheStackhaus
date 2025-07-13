@@ -216,7 +216,7 @@ const Sidebar = React.forwardRef<
     return (
       <div
         ref={ref}
-        className={cn("group hidden md:fixed md:top-16 md:flex flex-col text-sidebar-foreground border-r h-[calc(100vh-4rem)]", 
+        className={cn("group hidden md:fixed md:top-0 md:flex flex-col text-sidebar-foreground border-r h-screen pt-16", 
         "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
         "w-[--sidebar-width] transition-[width] ease-in-out duration-300",
         state === 'collapsed' ? 'w-[--sidebar-width-icon]' : 'w-[--sidebar-width]'
@@ -302,7 +302,7 @@ const SidebarInset = React.forwardRef<
     <main
       ref={ref}
       className={cn(
-        "flex-1 overflow-auto transition-[margin-left] duration-300 ease-in-out",
+        "flex-1 overflow-auto transition-[margin-left] duration-300 ease-in-out h-full",
         state === 'collapsed' ? 'md:ml-[--sidebar-width-icon]' : 'md:ml-[--sidebar-width]',
         className
       )}

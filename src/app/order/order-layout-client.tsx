@@ -2,6 +2,7 @@
 
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarInset } from '@/components/ui/sidebar'
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Footer } from '@/components/footer';
 
 type Category = {
   title: string;
@@ -47,11 +48,14 @@ export function OrderLayoutClient({
           </SidebarContent>
         </Sidebar>
         <SidebarInset>
-            <ScrollArea className="h-full">
+          <div className="flex flex-col h-full">
+            <ScrollArea className="flex-grow">
                 <div className="p-4 md:p-8">
                     {children}
                 </div>
             </ScrollArea>
+            <Footer />
+          </div>
         </SidebarInset>
     </SidebarProvider>
   )
