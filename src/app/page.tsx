@@ -38,7 +38,11 @@ export default async function Home() {
             <p className="text-lg md:text-xl max-w-3xl mx-auto drop-shadow-md mb-8">
               {hero.subtitle}
             </p>
-            <Button size="lg" asChild>
+            <Button
+              size="lg"
+              asChild
+              className="shadow-lg shadow-primary/20 hover:scale-105 hover:shadow-primary/40 transition-all duration-300"
+            >
               <Link href="/order">
                 {hero.cta}
                 <ArrowRight className="ml-2 h-5 w-5" />
