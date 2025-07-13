@@ -2,18 +2,20 @@
 
 import React, { createContext, useContext, useReducer, useMemo, useCallback } from "react";
 
-type Item = {
+export type Item = {
   id: string;
   name: string;
   price: number;
   imageUrl: string;
   quantity: number;
+  category: string;
 };
 
 type CartItem = {
   name: string;
   price: number;
   imageUrl: string;
+  category: string;
 };
 
 type State = {

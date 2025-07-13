@@ -35,8 +35,8 @@ export const OrderPageComponent: FC<{ content: OrderPageContent }> = ({ content 
   const { addItem } = useCart();
   const { toast } = useToast();
 
-  const handleAddToCart = (item: MenuItem) => {
-    addItem(item);
+  const handleAddToCart = (item: MenuItem, category: string) => {
+    addItem({ ...item, category });
     toast({
       title: 'Added to cart',
       description: `${item.name} has been added to your cart.`,
@@ -78,7 +78,7 @@ export const OrderPageComponent: FC<{ content: OrderPageContent }> = ({ content 
                         )}
                         <div className="flex justify-between items-center mt-auto">
                             <Badge variant="secondary" className="text-base font-bold">${item.price.toFixed(2)}</Badge>
-                            <Button size="sm" onClick={() => handleAddToCart(item)}>Add to Cart</Button>
+                            <Button size="sm" onClick={() => handleAddToCart(item, category.title)}>Add to Cart</Button>
                         </div>
                       </CardContent>
                     </Card>
