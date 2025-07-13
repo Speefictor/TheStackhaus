@@ -14,16 +14,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-24 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="https://firebasestudio.ai/user-managed-assets/Y29udGVudC9ibG9iL2lucHV0LzE3MTc0ODkzMTI5NTctMC1pbWFnZS5qcGc"
-            alt="The Stackhaus Logo"
-            width={200}
-            height={80}
-            className="object-contain"
-            data-ai-hint="logo"
-          />
+      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="https://placehold.co/40x40.png" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
+          <span className="text-xl font-bold font-headline text-primary">
+            The Stackhaus
+          </span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
@@ -52,14 +48,8 @@ export function Header() {
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="flex items-center gap-2 mb-4">
-                    <Image
-                      src="https://firebasestudio.ai/user-managed-assets/Y29udGVudC9ibG9iL2lucHV0LzE3MTc0ODkzMTI5NTctMC1pbWFnZS5qcGc"
-                      alt="The Stackhaus Logo"
-                      width={200}
-                      height={80}
-                      className="object-contain"
-                      data-ai-hint="logo"
-                    />
+                     <Image src="https://placehold.co/40x40.png" alt="The Stackhaus Logo" width={40} height={40} data-ai-hint="logo" />
+                     <span className="text-xl font-bold font-headline text-primary">The Stackhaus</span>
                   </Link>
                   {navLinks.map((link) => (
                     <Link
