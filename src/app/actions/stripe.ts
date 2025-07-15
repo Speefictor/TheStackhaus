@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import type { Item } from '@/hooks/use-cart';
 import Stripe from 'stripe';
 
+require('dotenv').config();
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 export async function createCheckoutSession(items: Item[]) {
