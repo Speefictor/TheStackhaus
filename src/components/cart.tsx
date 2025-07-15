@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import React, { useTransition } from "react";
 import { useCart } from "@/hooks/use-cart";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,8 +12,10 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Trash2 } from "lucide-react";
+import { Trash2, Loader2 } from "lucide-react";
 import type { Item as CartItem } from "@/hooks/use-cart";
+import { createCheckoutSession } from "@/app/actions/stripe";
+import { useToast } from "@/hooks/use-toast";
 
 const CATEGORY_ORDER = ["Beverages", "Lunch", "Party Platters"];
 
@@ -26,6 +29,23 @@ export function Cart() {
     isCartOpen,
     setCartOpen,
   } = useCart();
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+
+  const handleCheckout = () => {
+    startTransition(async () => {
+      try {
+        await createCheckoutSession(items);
+      } catch (error) {
+        toast({
+          title: "Checkout Error",
+          description: "There was a problem redirecting to Stripe. Please try again.",
+          variant: "destructive",
+        });
+        console.error("Stripe checkout error:", error);
+      }
+    });
+  };
 
   const formattedTotalPrice = totalPrice.toFixed(2);
 
@@ -102,8 +122,8 @@ export function Cart() {
                   <span>Total</span>
                   <span>${formattedTotalPrice}</span>
                 </div>
-                <Button size="lg" className="w-full">
-                  Checkout
+                <Button size="lg" className="w-full" onClick={handleCheckout} disabled={isPending}>
+                  {isPending ? <Loader2 className="animate-spin" /> : 'Checkout'}
                 </Button>
                 <Button variant="outline" size="sm" onClick={clearCart}>
                   Clear Cart
