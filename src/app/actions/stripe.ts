@@ -47,11 +47,17 @@ export async function createCheckoutSession(items: Item[]) {
     if (session.url) {
       redirect(session.url);
     } else {
-      throw new Error('Could not create Stripe checkout session');
+      // This case should ideally not be reached if session creation is successful.
+      throw new Error('Stripe session was created but no URL was returned.');
     }
   } catch (error) {
+    // Log the full error from Stripe for better debugging
     console.error("Stripe session creation failed:", error);
-    // You might want to redirect to an error page or show a toast
-    throw new Error('Could not create Stripe checkout session');
+    
+    // Re-throw a more informative error for the client-side to catch
+    if (error instanceof Error) {
+        throw new Error(`Could not create Stripe checkout session: ${error.message}`);
+    }
+    throw new Error('Could not create Stripe checkout session due to an unknown error.');
   }
 }
