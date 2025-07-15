@@ -1,10 +1,9 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 import type { Item } from '@/hooks/use-cart';
 import Stripe from 'stripe';
-
-require('dotenv').config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -21,20 +20,29 @@ export async function createCheckoutSession(items: Item[]) {
     quantity: item.quantity,
   }));
 
-  // Ensure there's a success and cancel URL
-  const host = process.env.NEXT_PUBLIC_HOST || 'http://localhost:9002';
+  const headersList = headers();
+  const host = headersList.get('host') || 'localhost:9002';
+  const protocol = host.startsWith('localhost') ? 'http' : 'https';
+  const successUrl = `${protocol}://${host}/order/success?session_id={CHECKOUT_SESSION_ID}`;
+  const cancelUrl = `${protocol}://${host}/order`;
 
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items,
-    mode: 'payment',
-    success_url: `${host}/order/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${host}/order`,
-  });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items,
+      mode: 'payment',
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+    });
 
-  if (session.url) {
-    redirect(session.url);
-  } else {
+    if (session.url) {
+      redirect(session.url);
+    } else {
+      throw new Error('Could not create Stripe checkout session');
+    }
+  } catch (error) {
+    console.error("Stripe session creation failed:", error);
+    // You might want to redirect to an error page or show a toast
     throw new Error('Could not create Stripe checkout session');
   }
 }
