@@ -8,17 +8,26 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 export async function createCheckoutSession(items: Item[]) {
-  const line_items = items.map(item => ({
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: item.name,
-        images: [item.imageUrl.startsWith('http') ? item.imageUrl : 'https://placehold.co/128x128.png'],
+  const line_items = items.map(item => {
+    const isPlaceholder = item.imageUrl.startsWith('https://placehold.co');
+    // Stripe requires valid, publicly accessible image URLs.
+    // We'll use a valid fallback image if the item's image is a placeholder.
+    const validImageUrl = isPlaceholder
+      ? 'https://gourmondoco.com/cdn/shop/files/Assorted_Sandwiches.jpg?v=1751062061&width=768'
+      : item.imageUrl;
+
+    return {
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          images: [validImageUrl],
+        },
+        unit_amount: Math.round(item.price * 100), // price in cents
       },
-      unit_amount: Math.round(item.price * 100), // price in cents
-    },
-    quantity: item.quantity,
-  }));
+      quantity: item.quantity,
+    };
+  });
 
   const headersList = headers();
   const host = headersList.get('host') || 'localhost:9002';
