@@ -9,9 +9,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 export async function createCheckoutSession(items: Item[]) {
   const line_items = items.map(item => {
-    const isPlaceholder = item.imageUrl.startsWith('https://placehold.co');
     // Stripe requires valid, publicly accessible image URLs.
     // We'll use a valid fallback image if the item's image is a placeholder.
+    const isPlaceholder = item.imageUrl.startsWith('https://placehold.co');
     const validImageUrl = isPlaceholder
       ? 'https://gourmondoco.com/cdn/shop/files/Assorted_Sandwiches.jpg?v=1751062061&width=768'
       : item.imageUrl;
