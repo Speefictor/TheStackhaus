@@ -35,21 +35,15 @@ export async function createCheckoutSession(items: Item[]) {
   const successUrl = `${protocol}://${host}/order/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${protocol}://${host}/order`;
 
+  let session;
   try {
-    const session = await stripe.checkout.sessions.create({
+    session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
       success_url: successUrl,
       cancel_url: cancelUrl,
     });
-
-    if (session.url) {
-      redirect(session.url);
-    } else {
-      // This case should ideally not be reached if session creation is successful.
-      throw new Error('Stripe session was created but no URL was returned.');
-    }
   } catch (error) {
     // Log the full error from Stripe for better debugging
     console.error("Stripe session creation failed:", error);
@@ -59,5 +53,12 @@ export async function createCheckoutSession(items: Item[]) {
         throw new Error(`Could not create Stripe checkout session: ${error.message}`);
     }
     throw new Error('Could not create Stripe checkout session due to an unknown error.');
+  }
+
+  if (session.url) {
+    redirect(session.url);
+  } else {
+    // This case should ideally not be reached if session creation is successful.
+    throw new Error('Stripe session was created but no URL was returned.');
   }
 }
