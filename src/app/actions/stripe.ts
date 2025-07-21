@@ -30,7 +30,11 @@ export async function createCheckoutSession(items: Item[]) {
   });
 
   const headersList = headers();
-  const host = headersList.get('host') || 'localhost:9002';
+  const requestHost = headersList.get('host') || 'localhost:9002';
+  
+  // Prioritize NEXT_PUBLIC_HOST, then fall back to request headers.
+  const host = process.env.NEXT_PUBLIC_HOST || requestHost;
+
   // Correctly check for both localhost and 127.0.0.1 to use http protocol
   const protocol = host.startsWith('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https';
   const successUrl = `${protocol}://${host}/order/success?session_id={CHECKOUT_SESSION_ID}`;
