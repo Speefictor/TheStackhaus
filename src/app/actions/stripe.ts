@@ -48,6 +48,12 @@ export async function createCheckoutSession(items: Item[]) {
       mode: 'payment',
       success_url: successUrl,
       cancel_url: cancelUrl,
+      phone_number_collection: {
+        enabled: true,
+      },
+      shipping_address_collection: {
+        allowed_countries: ['US', 'CA'],
+      },
     });
   } catch (error) {
     // Log the full error from Stripe for better debugging
