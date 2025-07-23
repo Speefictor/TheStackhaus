@@ -59,21 +59,21 @@ export function GalleryPreview({ gallery }: { gallery: GalleryProps }) {
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-3xl">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-headline">{item.title}</DialogTitle>
-                  <DialogDescription>{item.description}</DialogDescription>
-                </DialogHeader>
-                <div className="mt-4">
+              <DialogContent className="max-w-3xl p-0">
+                <div className="relative">
                   <Image
                     src={item.imageUrl}
                     data-ai-hint={item.hint}
                     alt={item.title}
                     width={1200}
                     height={800}
-                    className="rounded-lg object-contain w-full h-auto"
+                    className="rounded-t-lg object-contain w-full h-auto"
                   />
                 </div>
+                <DialogHeader className="p-6">
+                  <DialogTitle className="text-2xl font-headline">{item.title}</DialogTitle>
+                  <DialogDescription>{item.description}</DialogDescription>
+                </DialogHeader>
               </DialogContent>
             </Dialog>
           ))}
