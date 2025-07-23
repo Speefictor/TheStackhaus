@@ -7,14 +7,26 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import { useCart } from '@/hooks/use-cart';
+import { useState, useEffect } from 'react';
 
 export function Header() {
   const { totalItems, setCartOpen } = useCart();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+
   const navLinks = [
     { href: '/order', label: 'Order Online' },
     { href: '/#gallery', label: 'Gallery' },
     { href: '/#about', label: 'About' },
   ];
+
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
