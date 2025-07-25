@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ContactForm } from '@/components/contact-form';
 import { ArrowRight } from 'lucide-react';
 import { getPageContent } from '@/lib/content';
 import { marked } from 'marked';
@@ -109,9 +108,9 @@ export default async function Home() {
                         dangerouslySetInnerHTML={{ __html: await marked(about.body) }}
                       />
                       <div className="space-y-4 text-muted-foreground text-center">
-                          <p><strong>Email:</strong> {about.email}</p>
-                          <p><strong>Phone:</strong> {about.phone}</p>
-                          <p><strong>Address:</strong> {about.address}</p>
+                          {about.email && <p><strong>Email:</strong> {about.email}</p>}
+                          {about.phone && <p><strong>Phone:</strong> {about.phone}</p>}
+                          {about.address && <p><strong>Address:</strong> {about.address}</p>}
                       </div>
                   </div>
               </div>
