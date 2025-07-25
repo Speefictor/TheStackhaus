@@ -101,23 +101,19 @@ export default async function Home() {
         
         <section id="about" className="py-16 md:py-24 bg-muted">
           <div className="container px-4 md:px-6">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="max-w-4xl mx-auto">
                    <div>
-                      <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">{about.title}</h2>
+                      <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4 text-center">{about.title}</h2>
                       <div
                         className="prose dark:prose-invert max-w-none text-lg text-muted-foreground mb-8"
                         dangerouslySetInnerHTML={{ __html: await marked(about.body) }}
                       />
-                      <div className="space-y-4 text-muted-foreground">
+                      <div className="space-y-4 text-muted-foreground text-center">
                           <p><strong>Email:</strong> {about.email}</p>
                           <p><strong>Phone:</strong> {about.phone}</p>
                           <p><strong>Address:</strong> {about.address}</p>
                       </div>
                   </div>
-                  <Card className="p-8 shadow-xl">
-                      <h3 className="text-2xl font-bold font-headline mb-4 text-center">Contact Us</h3>
-                      <ContactForm />
-                  </Card>
               </div>
           </div>
         </section>
