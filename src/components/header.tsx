@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -67,9 +68,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
             <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold font-headline text-primary">
-                The Stackhaus
-            </span>
+              <div className="relative h-10 w-32 bg-muted rounded animate-pulse"></div>
             </Link>
             <div className="flex items-center space-x-2 md:space-x-4">
                 <div className="h-10 w-10 bg-muted rounded-full animate-pulse"></div>
@@ -85,9 +84,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold font-headline text-primary">
-            The Stackhaus
-          </span>
+          <Image src="/logo.png" alt="The Stackhaus Logo" width={150} height={40} className="h-10 w-auto" priority />
         </Link>
         <nav className="hidden md:flex items-center space-x-6">
           {renderNavLinks()}
@@ -114,7 +111,7 @@ export function Header() {
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="flex items-center gap-2 mb-4">
-                     <span className="text-xl font-bold font-headline text-primary">The Stackhaus</span>
+                     <Image src="/logo.png" alt="The Stackhaus Logo" width={150} height={40} className="h-10 w-auto" />
                   </Link>
                   {renderNavLinks(true)}
                   <Button className="w-full mt-4" asChild>
