@@ -43,15 +43,55 @@ categories:
       - id: "sandwich-boxes"
         title: "Sandwich Boxes"
         items:
-          - name: "Signature Sandwich Box"
+          - name: "Avocado Toast Sandwich with Egg"
             price: 18.00
-            description: "Your choice of signature sandwich, served with chips and a cookie."
-            imageUrl: "https://gourmondoco.com/cdn/shop/files/3295-BL_01-18-23-LowRes-3.jpg?v=1730330062&width=400"
+            description: "Sourdough or multigrain bread \nAvocado (mashed or sliced) \nEgg (fried, poached, or soft boiled) \nOlive oil \nSalt & pepper \nRed pepper flakes (optional) \nLemon juice \nArugula or microgreens (optional)"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/AvocadoToastSandwich-withEgg-1.jpg"
             hint: "sandwich lunch box"
-          - name: "Gourmet Salad Box"
+          - name: "Roast Beef Sandwich"
             price: 16.00
-            description: "A fresh gourmet salad with your choice of protein and dressing."
-            imageUrl: "https://gourmondoco.com/cdn/shop/files/4013-BL_01-18-23-LowRes-7.jpg?v=1730330156&width=400"
+            description: "Ciabatta or hoagie roll \n Roast beef (sliced thin) \n Cheddar or provolone cheese\n Horseradish mayo or Dijon mustard\n Lettuce\n Tomato\n Red onion\n Pickles (optional)"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/RoastBeefSandwich-1.jpg"
+            hint: "salad lunch box"
+          - name: "Italian Sandwich"
+            price: 16.00
+            description: "Italian sub roll\nSalami\n Capicola\n Provolone cheese\n Lettuce\n Tomato\n Red onion\n Pepperoncini or banana peppers\n Italian dressing or oil & vinegar"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/ItalianSandwich-2.jpg"
+            hint: "salad lunch box"
+          - name: "Salmon Sandwich"
+            price: 16.00
+            description: "Brioche bun or rye bread\nSmoked salmon or grilled salmon filet\nCream cheese or dill mayo\nCucumber slices\nRed onion\nCapers\nArugula or spinach\nFresh dill or chives"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/SalmonSandwich-1.jpg"
+            hint: "salad lunch box"
+          - name: "Turkey, Pesto & Cranberry Sandwich"
+            price: 16.00
+            description: "Whole grain or sourdough bread\nRoasted turkey breast (sliced) \n Pesto spread\n Cranberry sauce\n Provolone or Swiss cheese\n Spinach or lettuce"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/SmokedTurkey-Pesto&CranberrySandwich-2.jpg"
+            hint: "salad lunch box"
+          - name: "Caprese Sandwich"
+            price: 16.00
+            description: "Ciabatta or focaccia bread\nFresh mozzarella\n Sliced tomatoes\n Fresh basil leaves\n Balsamic glaze or reduction\n Olive oil\n Salt & pepper"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/Caprese-1.jpg"
+            hint: "salad lunch box"
+          - name: "Almond Butter & Banana Sandwich"
+            price: 16.00
+            description: "Whole wheat or oat bread\nAlmond butter\n Sliced banana\n Honey or cinnamon (optional) \n Chia seeds or granola (optional)"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/AlmondButter&BananaSandwich-2.jpg"
+            hint: "salad lunch box"
+          - name: "Grilled Chicken Teriyaki Sandwich"
+            price: 16.00
+            description: "Soft roll or baguette\nGrilled teriyaki chicken breast (sliced) \n Grilled pineapple or pineapple slices\n Red cabbage slaw or shredded lettuce\n Teriyaki sauce\n Mayo or siracha mayo\n Green onions (optional)"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/GrilledChickenTeriyakiSandwich-1.jpg"
+            hint: "salad lunch box"
+          - name: "Veggies Wrap / Sandwich"
+            price: 16.00
+            description: "Tortilla wrap or multigrain bread\nHummus or avocado spread\n Cucumber\n Carrot (shredded) \n Bell peppers (sliced) \n Spinach or mixed greens\n Tomato\n Sprouts or microgreens\n Feta cheese (optional)"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/VeggiesWrap-1.jpg"
+            hint: "salad lunch box"
+          - name: "Smörgås – Swedish Open-Faced Sandwich"
+            price: 16.00
+            description: "Rye or pumpernickel bread\nButter or cream cheese (spread) \n Cold cuts (e.g., ham, roast beef, or smoked salmon) \n Hard-boiled egg (sliced) \n Pickled cucumber or beets\n Fresh dill\n Spinach\n Cheese slices"
+            imageUrl: "https://speefictor.github.io/publicContent/gallery/Smorgas-1.jpeg"
             hint: "salad lunch box"
       - id: "sliders-sandwich-platters"
         title: "Sliders & Sandwich Platters"
@@ -66,8 +106,6 @@ categories:
             description: "Our signature sandwiches, cut and arranged. Serves 8-10."
             imageUrl: "https://gourmondoco.com/cdn/shop/files/6544_53845239532_5515752b66_o.jpg?v=1730394372&width=400"
             hint: "sandwich platter"
-  - title: "Party Platters"
-    subcategories:
       - id: "party-platters"
         title: "Party Platters"
         items:
@@ -81,6 +119,8 @@ categories:
             description: "Cured meats, olives, pickles, and artisanal bread."
             imageUrl: "https://gourmondoco.com/cdn/shop/files/5398_Gourmondo-05-24-2022-LowRes-90.jpg?v=1730400681&width=400"
             hint: "charcuterie board"
+  - title: "Snacks & Sides"
+    subcategories:
       - id: "snacks-slides"
         title: "Snacks & Sides"
         items:

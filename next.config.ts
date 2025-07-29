@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'speefictor.github.io',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   experimental: {
