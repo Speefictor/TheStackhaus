@@ -11,7 +11,7 @@ export default function OrderSuccessPage() {
           <div className="mx-auto bg-green-100 dark:bg-green-900 rounded-full p-3 w-fit">
             <CheckCircle2 className="h-12 w-12 text-green-500 dark:text-green-400" />
           </div>
-          <CardTitle className="text-3xl font-headline mt-4">Order Successful!</CardTitle>
+          <CardTitle className="text-3xl mt-4">Order Successful!</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground">

@@ -62,7 +62,7 @@ export function ContactForm() {
     return (
       <div className="text-center p-8 border-2 border-dashed rounded-lg bg-green-500/10 dark:bg-green-500/20 text-green-700 dark:text-green-300">
         <CheckCircle2 className="mx-auto h-16 w-16 text-green-500 mb-4" />
-        <h3 className="text-2xl font-headline font-bold mb-2 text-foreground">Thank You!</h3>
+        <h3 className="text-2xl font-headline mb-2 text-foreground">Thank You!</h3>
         <p className="mb-4 text-foreground/80">Your message has been sent successfully.</p>
         <p className="text-sm">You can also <Link href="/" className="underline hover:text-primary">return to the homepage</Link>.</p>
       </div>

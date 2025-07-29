@@ -46,17 +46,17 @@ export const OrderPageComponent: FC<{ content: OrderPageContent }> = ({ content 
   return (
     <div className="container mx-auto">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">{title}</h1>
+        <h1 className="text-4xl md:text-5xl font-headline mb-4">{title}</h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{subtitle}</p>
       </div>
 
       <div className="space-y-16">
         {categories.map((category) => (
           <div key={category.title} className="space-y-12">
-            <h2 className="text-4xl font-bold font-headline text-center pb-2 border-b-2 border-primary">{category.title}</h2>
+            <h2 className="text-4xl font-headline text-center pb-2 border-b-2 border-primary">{category.title}</h2>
             {category.subcategories.map((subcategory) => (
               <section key={subcategory.id} id={subcategory.id} className="scroll-mt-24">
-                <h3 className="text-3xl font-semibold font-headline mb-8">{subcategory.title}</h3>
+                <h3 className="text-3xl font-headline mb-8">{subcategory.title}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                   {subcategory.items.map((item) => (
                     <Card key={item.name} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
