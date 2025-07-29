@@ -1,16 +1,16 @@
+
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 type GalleryItem = {
   title: string;
@@ -26,29 +26,40 @@ type GalleryProps = {
 };
 
 export function GalleryPreview({ gallery }: { gallery: GalleryProps }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleOpen = (index: number) => {
-    setSelectedImageIndex(index);
+    setSelectedIndex(index);
+    setOpen(true);
   };
 
-  const handleClose = () => {
-    setSelectedImageIndex(null);
-  };
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
 
-  const handleNext = () => {
-    if (selectedImageIndex !== null && selectedImageIndex < gallery.items.length - 1) {
-      setSelectedImageIndex(selectedImageIndex + 1);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (open && emblaApi) {
+      emblaApi.scrollTo(selectedIndex, true);
     }
-  };
+  }, [open, selectedIndex, emblaApi]);
 
-  const handlePrev = () => {
-    if (selectedImageIndex !== null && selectedImageIndex > 0) {
-      setSelectedImageIndex(selectedImageIndex - 1);
-    }
-  };
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi, setSelectedIndex])
 
-  const currentItem = selectedImageIndex !== null ? gallery.items[selectedImageIndex] : null;
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on('select', onSelect)
+    emblaApi.on('reInit', onSelect)
+  }, [emblaApi, onSelect])
 
   return (
     <section id="gallery" className="py-16 md:py-24">
@@ -64,7 +75,7 @@ export function GalleryPreview({ gallery }: { gallery: GalleryProps }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {gallery.items.map((item, index) => (
             <div
-              key={item.title}
+              key={`${item.title}-${index}`}
               className="group block overflow-hidden rounded-lg shadow-lg cursor-pointer"
               onClick={() => handleOpen(index)}
             >
@@ -86,44 +97,32 @@ export function GalleryPreview({ gallery }: { gallery: GalleryProps }) {
           ))}
         </div>
 
-        <Dialog open={selectedImageIndex !== null} onOpenChange={handleClose}>
-          <DialogContent className="max-w-4xl p-0">
-            {currentItem && (
-              <div className="relative group">
-                <Image
-                  src={currentItem.imageUrl}
-                  data-ai-hint={currentItem.hint}
-                  alt={currentItem.title}
-                  width={1200}
-                  height={800}
-                  className="rounded-t-lg object-contain w-full h-auto max-h-[80vh]"
-                />
-                
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full opacity-70 group-hover:opacity-100 transition-opacity disabled:opacity-20"
-                  onClick={handlePrev}
-                  disabled={selectedImageIndex === 0}
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full opacity-70 group-hover:opacity-100 transition-opacity disabled:opacity-20"
-                  onClick={handleNext}
-                  disabled={selectedImageIndex === gallery.items.length - 1}
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </Button>
-
-                <DialogHeader className="p-6 text-left">
-                  <DialogTitle className="text-2xl font-headline">{currentItem.title}</DialogTitle>
-                  <DialogDescription>{currentItem.description}</DialogDescription>
-                </DialogHeader>
-              </div>
-            )}
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent className="max-w-4xl w-full p-0">
+            <Carousel setApi={emblaApi} opts={{ startIndex: selectedIndex }}>
+                <CarouselContent>
+                  {gallery.items.map((item, index) => (
+                    <CarouselItem key={index}>
+                      <div className="flex flex-col items-center justify-center p-4">
+                        <Image
+                          src={item.imageUrl}
+                          data-ai-hint={item.hint}
+                          alt={item.title}
+                          width={1200}
+                          height={800}
+                          className="rounded-lg object-contain w-auto h-auto max-h-[70vh]"
+                        />
+                         <div className="text-center mt-4">
+                            <h3 className="text-xl font-headline">{item.title}</h3>
+                            <p className="text-muted-foreground text-sm">{item.description}</p>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
+              </Carousel>
           </DialogContent>
         </Dialog>
       </div>
