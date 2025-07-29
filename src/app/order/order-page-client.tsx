@@ -73,7 +73,7 @@ export const OrderPageComponent: FC<{ content: OrderPageContent }> = ({ content 
                       <CardContent className="p-4 flex flex-col flex-grow">
                         <CardTitle className="text-lg font-headline mb-2">{item.name}</CardTitle>
                         {item.description && (
-                          <CardDescription className="text-sm text-muted-foreground mb-4 flex-grow">
+                          <CardDescription className="text-sm text-muted-foreground mb-4 flex-grow whitespace-pre-line">
                             {item.description}
                           </CardDescription>
                         )}
