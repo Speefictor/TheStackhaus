@@ -21,6 +21,9 @@ export default {
         headline: ["'Cardinal'", 'serif'],
         code: ['monospace'],
       },
+      lineHeight: {
+        snug: '1.1',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
