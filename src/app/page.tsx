@@ -104,7 +104,7 @@ export default async function Home() {
                    <div>
                       <h2 className="text-3xl md:text-4xl font-headline mb-4 text-center">{about.title}</h2>
                       <div
-                        className="prose dark:prose-invert max-w-none text-lg text-muted-foreground mb-8"
+                        className="prose prose-about dark:prose-invert max-w-none text-lg text-muted-foreground mb-8"
                         dangerouslySetInnerHTML={{ __html: await marked(about.body) }}
                       />
                       <div className="space-y-4 text-muted-foreground text-center">

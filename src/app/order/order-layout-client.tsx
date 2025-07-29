@@ -24,7 +24,7 @@ export function OrderLayoutClient({
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-headline font-semibold">Categories</h2>
+              <h2 className="text-xl font-headline">Categories</h2>
               <SidebarTrigger />
             </div>
           </SidebarHeader>
