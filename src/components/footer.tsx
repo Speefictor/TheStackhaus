@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="md:col-span-1 lg:col-span-1">
             <Link href="/">
-                <Image src="/logo.png" alt="The Stackhaus Logo" width={180} height={48} className="h-12 w-auto mb-4" />
+                The Stackhaus
             </Link>
             <p className="text-sm max-w-xs">Artisanal sandwiches for unforgettable moments. We bring creativity and flavor to every event.</p>
           </div>
